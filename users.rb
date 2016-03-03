@@ -22,7 +22,8 @@ module Users
     raise "Evento inválido" unless evento
     apostador = @@users[emailApostador]
     raise "Apostador inválido" if !apostador || !apostador.is_a?(Apostador)
-    aposta = Aposta.new(evento, result, valor, emailApostador)
+    aposta = Aposta.new(evento, result, valor, apostador)
+    evento.addAposta(aposta)
     apostador.addAposta(aposta)
     aposta
   end

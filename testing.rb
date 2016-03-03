@@ -28,15 +28,11 @@ puts("Testar apostas\n\n")
 # 5*3 = 15
 
 aposta = Users.newAposta(0, 'HOME', 5, 'apostador1@email')
+aposta1 = Users.newAposta(0, 'HOME', 5, 'apostador2@email')
 
-puts(apostador1)
+puts("Balance apostador1=#{apostador1.balance}\n\n")
 
 # terminar um jogo com um resultado
 Eventos.get(0).setResult('HOME')
 
-puts(Eventos)
-
-puts '------------------------------------------'
-
-# ver quantos trocos esta aposta gerou
-puts("#{aposta.getPremio} $")
+puts("\nBalance apostador1=#{apostador1.balance}\n\n")

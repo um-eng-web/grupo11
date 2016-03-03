@@ -4,13 +4,22 @@ class Apostador < User
   attr_reader :apostas, :balance
 
   def initialize(email, password, name, balance)
-    super(email,password,name)
+    super(email, password, name)
     @balance = balance
     @apostas = []
   end
 
   def addAposta(aposta)
     @apostas.push(aposta)
+  end
+
+  def notify(evento, valor)
+    if valor > 0
+      puts "Acabou de ganhar #{valor} créditos no evento #{evento}"
+    else
+      puts "O evento #{evento} acabou"
+    end
+    @balance += valor
   end
 
   def to_s

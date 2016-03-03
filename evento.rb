@@ -19,14 +19,23 @@ class Evento
     @homeodd = homeodd
     @drawodd = drawodd
     @awayodd = awayodd
+    @apostas = []
   end
 
   def setResult(result)
     if result == 'AWAY' || result == 'HOME' || result == 'DRAW'
       @result = result
+      @apostas.each do |aposta|
+        aposta.notify(result)
+      end
     else
       raise 'Invalid result!'
     end
+  end
+
+  def addAposta(aposta)
+    raise 'Evento terminou!' if @result
+    @apostas.push(aposta)
   end
 
   def to_s

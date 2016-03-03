@@ -1,14 +1,14 @@
 class Aposta
-  attr_reader :evento, :result, :valor, :emailApostador # home/away
+  attr_reader :evento, :result, :valor, :apostador, :premio # home/away
 
-  def initialize(evento, result, valor, emailApostador)
+  def initialize(evento, result, valor, apostador)
     @evento = evento
     @result = result
     @valor = valor
-    @emailApostador = emailApostador
+    @apostador = apostador
   end
 
-  def getPremio
+  def notify(_result)
     result = @evento.result
     premio = 0
     if @evento.result == @result
@@ -16,7 +16,8 @@ class Aposta
       premio = @evento.homeodd * @valor if @evento.result == 'HOME'
       premio = @evento.drawodd * @valor if @evento.result == 'DRAW'
     end
-    premio
+    @premio = premio
+    apostador.notify(evento, premio)
   end
 
   def to_s
