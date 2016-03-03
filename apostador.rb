@@ -1,7 +1,7 @@
 require_relative 'user'
 
 class Apostador < User
-  attr_reader :aposta, :balance
+  attr_reader :apostas, :balance
 
   def initialize(email, password, name, balance)
     super(email,password,name)
@@ -14,6 +14,10 @@ class Apostador < User
   end
 
   def to_s
-    "email:#{@email} name:#{@name} balance:#{@balance} apostas:#{@apostas}"
+    if apostas.size > 0
+      apostas = "\n\t"
+      apostas += @apostas.to_a.join("\n\t")
+    end
+    "email:#{@email} name:#{@name} balance:#{@balance} apostas:#{apostas}"
   end
 end

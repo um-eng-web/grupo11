@@ -18,4 +18,8 @@ class Aposta
     end
     premio
   end
+
+  def to_s
+    "evento:#{@evento.id} resultado:#{@result} valor:#{@valor}"
+  end
 end

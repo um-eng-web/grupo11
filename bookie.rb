@@ -17,6 +17,6 @@ class Bookie < User
       eventos = "\n\t"
       eventos += @eventos.to_a.join("\n\t")
     end
-    "email:#{@email} name:#{@name} balance:#{@balance} eventos:#{eventos}"
+    "email:#{@email} name:#{@name} eventos:#{eventos}"
   end
 end
