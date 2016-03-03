@@ -6,14 +6,16 @@ require_relative 'aposta'
 
 # ideia: criar uma pasta com uma view para cada modelo
 
-def registerUser
+def registerApostador
   puts 'Enter your email!'
   email = gets.chomp
   puts 'Enter your name!'
   name = gets.chomp
   puts 'Enter your password!'
   password = gets.chomp
-  if Users.registerUser(email, password, name)
+  puts 'Enter your starting balance'
+  balance = gets.chomp.to_i
+  if Users.registerApostador(email, password, name, balance)
     puts "Register successfull!"
   else
     puts "Email in use!"
@@ -61,7 +63,7 @@ if __FILE__ == $PROGRAM_NAME
     puts "\n"
     case gets.chomp
     when '1'
-      registerUser
+      registerApostador
     when '2'
       loginUser
     when '3'

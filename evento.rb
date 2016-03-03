@@ -37,7 +37,11 @@ end
 module Eventos
   @@eventos = {}
 
-  def self.add(home, away, date, homeodd, drawodd, awayodd)
+  def self.add(home, away, date, homeodd, drawodd, awayodd, bookiemail)
+    bookie = Users.get(bookiemail)
+    if (!bookie || !bookie.is_a?(Bookie))
+      raise "Invalid Bookie"
+    end
     id = @@eventos.length
     evento = Evento.new(id, home, away, date, homeodd, drawodd, awayodd)
     @@eventos[id] = evento

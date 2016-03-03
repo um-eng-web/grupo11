@@ -9,6 +9,6 @@ class User
   end
 
   def to_s
-    "email:#{@email} name:#{@name} apostas:#{@apostas}"
+    "email:#{@email} name:#{@name} password:#{@password}"
   end
 end

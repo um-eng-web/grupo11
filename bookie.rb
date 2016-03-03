@@ -8,4 +8,8 @@ class Bookie < User
     @eventos = []
   end
 
+  def to_s
+    "email:#{@email} name:#{@name} balance:#{@balance} eventos:#{@eventos}"
+  end
+
 end

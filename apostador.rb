@@ -14,6 +14,6 @@ class Apostador < User
   end
 
   def to_s
-    "email:#{@email} name:#{@name} apostas:#{@apostas}"
+    "email:#{@email} name:#{@name} balance:#{@balance} apostas:#{@apostas}"
   end
 end
