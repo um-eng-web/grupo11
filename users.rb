@@ -1,11 +1,19 @@
 require_relative 'user'
+require_relative 'bookie'
+require_relative 'apostador'
 
 module Users
   @@users = {}
 
-  def self.register(email, password, name)
+  def self.registerApostador(email, password, name, balance)
     return nil if @@users[email]
-    user = User.new(email, password, name)
+    user = Apostador.new(email, password, name, balance)
+    @@users[email] = user
+  end
+
+  def self.registerBookie(email, password, name)
+    return nil if @@users[email]
+    user = Bookie.new(email, password, name)
     @@users[email] = user
   end
 
@@ -24,6 +32,10 @@ module Users
   end
 
   def self.to_s
-    @@users.to_s
+    string = ''
+    @@users.each do |key, value|
+      string += "#{key} -> #{value}\n"
+    end
+    string
   end
 end
