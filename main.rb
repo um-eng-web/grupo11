@@ -1,8 +1,8 @@
 # isto é tipo uma classe main, o programa começa aqui
 
-load 'evento.rb'
-load 'users.rb'
-load 'aposta.rb'
+require_relative 'evento'
+require_relative 'users'
+require_relative 'aposta'
 
 # ideia: criar uma pasta com uma view para cada modelo
 
@@ -42,6 +42,7 @@ if __FILE__ == $PROGRAM_NAME
     puts '1-Register'
     puts '2-Login'
     puts '3-List users (debug)'
+    puts '4-Exit'
     puts "\n"
     case gets.chomp
 
@@ -51,11 +52,15 @@ if __FILE__ == $PROGRAM_NAME
       loginUser
     when '3'
       puts Users
+    when '4'
+      puts 'Bye!'
+      exit
     end
   end
 end
 
 # exemplos do codigo, experimentar no interpretador é possível
+# argumentos Evento (home, away, time, homeodd, drawodd, awayodd)
 Eventos.add(Evento.new('Porto', 'Benfica', Time.local(2016, 3, 3, 16, 20), 3, 2, 4))
 Eventos.add(Evento.new('Vitoria', 'Braga', Time.local(2016, 3, 3, 16, 20), 1, 1, 2))
 

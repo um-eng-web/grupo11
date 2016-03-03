@@ -1,5 +1,5 @@
 require 'set'
-load 'aposta.rb'
+require_relative 'aposta'
 
 # Formatting the way the sets print
 class Set
