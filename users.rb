@@ -17,6 +17,16 @@ module Users
     @@users[email] = user
   end
 
+  def self.newAposta(idEvento, result, valor, emailApostador)
+    evento = Eventos.get(idEvento)
+    raise "Evento inválido" unless evento
+    apostador = @@users[emailApostador]
+    raise "Apostador inválido" if !apostador || !apostador.is_a?(Apostador)
+    aposta = Aposta.new(evento, result, valor, emailApostador)
+    apostador.addAposta(aposta)
+    aposta
+  end
+
   def self.login(email, password)
     user = @@users[email]
     user if user && (user.password == password)

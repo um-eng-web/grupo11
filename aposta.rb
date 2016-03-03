@@ -1,11 +1,11 @@
 class Aposta
-  attr_reader :evento, :result, :valor, :user # home/away
+  attr_reader :evento, :result, :valor, :emailApostador # home/away
 
-  def initialize(evento, result, valor, user)
+  def initialize(evento, result, valor, emailApostador)
     @evento = evento
     @result = result
     @valor = valor
-    @user = user
+    @emailApostador = emailApostador
   end
 
   def getPremio

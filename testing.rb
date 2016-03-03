@@ -21,7 +21,7 @@ puts "------------------------------------------"
 
 # instanciar uma aposta (evento, resultado, valor, utilizador)
 # 5*3 = 15
-aposta = Aposta.new(Eventos.get(0), 'HOME', 5, 'francisco@mail')
+aposta = Users.newAposta(0, 'HOME', 5, 'apostador1@email')
 
 # terminar um jogo com um resultado
 Eventos.get(0).setResult('HOME')
