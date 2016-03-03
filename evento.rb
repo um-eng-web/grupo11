@@ -9,9 +9,10 @@ class Set
 end
 
 class Evento
-  attr_reader :home, :away, :date, :result, :homeodd, :drawodd, :awayodd, :apostas
+  attr_reader :home, :away, :date, :result, :homeodd, :drawodd, :awayodd, :apostas, :id
 
-  def initialize(home, away, date, homeodd, drawodd, awayodd)
+  def initialize(id, home, away, date, homeodd, drawodd, awayodd)
+    @id = id
     @home = home
     @away = away
     @date = date
@@ -24,20 +25,21 @@ class Evento
     if result == 'AWAY' || result == 'HOME' || result == 'DRAW'
       @result = result
     else
-      raise 'Invalid team!'
+      raise 'Invalid result!'
     end
   end
 
   def to_s
-    "#{@home} VS #{@away} Odds(#{@homeodd}|#{@drawodd}|#{@awayodd})"
+    "ID=#{@id} | #{@home} VS #{@away} Odds(#{@homeodd}|#{@drawodd}|#{@awayodd})"
   end
 end
 
 module Eventos
   @@eventos = {}
 
-  def self.add(evento)
+  def self.add(home, away, date, homeodd, drawodd, awayodd)
     id = @@eventos.length
+    evento = Evento.new(id, home, away, date, homeodd, drawodd, awayodd)
     @@eventos[id] = evento
   end
 
@@ -46,10 +48,12 @@ module Eventos
   end
 
   def self.to_s
-    @@eventos.to_s
+    string = ''
+    @@eventos.each do |key, value|
+      string += "#{key} -> #{value}\n"
+    end
+    string
   end
 end
-
-
 
 # datas em ruby -> ano mes di

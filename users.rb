@@ -1,11 +1,18 @@
 require_relative 'user'
+require_relative 'bookie'
 
 module Users
   @@users = {}
 
-  def self.register(email, password, name)
+  def self.registerUser(email, password, name)
     return nil if @@users[email]
     user = User.new(email, password, name)
+    @@users[email] = user
+  end
+
+  def self.registerBookie(email, password, name)
+    return nil if @@users[email]
+    user = Bookie.new(email, password, name)
     @@users[email] = user
   end
 
