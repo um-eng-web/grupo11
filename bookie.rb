@@ -4,12 +4,19 @@ class Bookie < User
   attr_reader :eventos
 
   def initialize(email, password, name)
-    super(email,password,name)
+    super(email, password, name)
     @eventos = []
   end
 
-  def to_s
-    "email:#{@email} name:#{@name} balance:#{@balance} eventos:#{@eventos}"
+  def addEvento(evento)
+    @eventos.push(evento)
   end
 
+  def to_s
+    if eventos.size > 0
+      eventos = "\n\t"
+      eventos += @eventos.to_a.join("\n\t")
+    end
+    "email:#{@email} name:#{@name} balance:#{@balance} eventos:#{eventos}"
+  end
 end
