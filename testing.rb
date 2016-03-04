@@ -1,6 +1,6 @@
-require_relative 'evento'
-require_relative 'betess'
-require_relative 'aposta'
+require_relative 'api/evento'
+require_relative 'api/betess'
+require_relative 'api/aposta'
 
 
 

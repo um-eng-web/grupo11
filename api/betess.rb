@@ -1,5 +1,5 @@
-require_relative 'apostador'
-require_relative 'bookie'
+require_relative 'users/apostador'
+require_relative 'users/bookie'
 require_relative 'evento'
 require_relative 'aposta'
 
