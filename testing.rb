@@ -2,8 +2,6 @@ require_relative 'api/evento'
 require_relative 'api/betess'
 require_relative 'api/aposta'
 
-
-
 # email password name balance
 apostador1 = BetESS.registerApostador('apostador1@email', '1234', 'apostador1', 60)
 apostador2 = BetESS.registerApostador('apostador2@email', '1234', 'apostador2', 120)
@@ -27,8 +25,13 @@ puts("Testar apostas\n\n")
 # instanciar uma aposta (evento, resultado, valor, utilizador)
 # 5*3 = 15
 
-aposta = BetESS.newAposta(0, 'HOME', 5, 'apostador1@email')
-aposta1 = BetESS.newAposta(0, 'HOME', 5, 'apostador2@email')
+#como salvar as excepçoes
+begin
+  aposta = BetESS.newAposta(0, 'HOME', 5, 'apostador1@email')
+  aposta1 = BetESS.newAposta(0, 'HOME', 150, 'apostador2@email')
+rescue NotEnoughMoney
+  puts "Não tem dinheiro para apostar!"
+end
 
 puts("Balance apostador1=#{apostador1.balance}\n\n")
 

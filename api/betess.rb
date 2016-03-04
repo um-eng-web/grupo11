@@ -2,6 +2,7 @@ require_relative 'users/apostador'
 require_relative 'users/bookie'
 require_relative 'evento'
 require_relative 'aposta'
+require_relative 'exceptions'
 
 module BetESS
 
@@ -22,10 +23,12 @@ module BetESS
 
   def self.newAposta(idEvento, result, valor, emailApostador)
     evento = @@eventos[idEvento]
-    raise "Evento inválido" unless evento
+    raise InvalidEvento unless evento
     apostador = @@users[emailApostador]
-    raise "Apostador inválido" if !apostador || !apostador.is_a?(Apostador)
+    raise InvalidApostador if !apostador || !apostador.is_a?(Apostador)
     aposta = Aposta.new(evento, result, valor, apostador)
+    raise NotEnoughMoney if valor > apostador.balance
+    apostador.balance -= valor
     evento.addAposta(aposta)
     apostador.addAposta(aposta)
     aposta
@@ -58,7 +61,7 @@ module BetESS
   def self.newEvento(home, away, date, homeodd, drawodd, awayodd, bookiemail)
     bookie = user = @@users[bookiemail]
     if !bookie || !bookie.is_a?(Bookie)
-      raise 'Invalid Bookie'
+      raise InvalidBookie
     else
       id = @@eventos.length
       evento = Evento.new(id, home, away, date, homeodd, drawodd, awayodd)

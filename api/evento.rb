@@ -29,12 +29,12 @@ class Evento
         aposta.notify(result)
       end
     else
-      raise 'Invalid result!'
+      raise :invalidResult
     end
   end
 
   def addAposta(aposta)
-    raise 'Evento terminou!' if @result
+    raise :finishedEvento if @result
     @apostas.push(aposta)
   end
 

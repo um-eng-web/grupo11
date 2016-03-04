@@ -1,7 +1,8 @@
 require_relative 'user'
 
 class Apostador < User
-  attr_reader :apostas, :balance
+  attr_reader :apostas
+  attr_accessor :balance
 
   def initialize(email, password, name, balance)
     super(email, password, name)
@@ -15,7 +16,7 @@ class Apostador < User
 
   def notify(evento, valor)
     if valor > 0
-      puts "Acabou de ganhar #{valor} créditos no evento #{evento}"
+      puts "#{name} acabou de ganhar #{valor} créditos no evento #{evento}!"
     else
       puts "O evento #{evento} acabou"
     end
