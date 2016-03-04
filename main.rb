@@ -1,7 +1,7 @@
 # isto é tipo uma classe main, o programa começa aqui
 
 require_relative 'evento'
-require_relative 'users'
+require_relative 'BetESS'
 require_relative 'aposta'
 
 # ideia: criar uma pasta com uma view para cada modelo
@@ -15,7 +15,7 @@ def registerApostador
   password = gets.chomp
   puts 'Enter your starting balance'
   balance = gets.chomp.to_i
-  if Users.registerApostador(email, password, name, balance)
+  if BetESS.registerApostador(email, password, name, balance)
     puts "Register successfull!"
   else
     puts "Email in use!"
@@ -29,7 +29,7 @@ def registerBookie
   name = gets.chomp
   puts 'Enter your password!'
   password = gets.chomp
-  if Users.registerBookie(email, password, name)
+  if BetESS.registerBookie(email, password, name)
     puts "Register Bookie successfull!"
   else
     puts "Email in use!"
@@ -41,7 +41,7 @@ def loginUser
   email = gets.chomp
   puts 'Enter your password!'
   password = gets.chomp
-  if Users.login(email, password)
+  if BetESS.login(email, password)
     puts 'Login successfull!'
   else
     puts 'Wrong login!'
@@ -67,7 +67,7 @@ if __FILE__ == $PROGRAM_NAME
     when '2'
       loginUser
     when '3'
-      puts Users
+      puts BetESS.usersToString
     when '4'
       registerBookie
     when '5'

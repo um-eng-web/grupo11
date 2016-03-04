@@ -1,9 +1,12 @@
-require_relative 'user'
-require_relative 'bookie'
 require_relative 'apostador'
+require_relative 'bookie'
+require_relative 'evento'
+require_relative 'aposta'
 
-module Users
+module BetESS
+
   @@users = {}
+  @@eventos = {}
 
   def self.registerApostador(email, password, name, balance)
     return nil if @@users[email]
@@ -18,7 +21,7 @@ module Users
   end
 
   def self.newAposta(idEvento, result, valor, emailApostador)
-    evento = Eventos.get(idEvento)
+    evento = @@eventos[idEvento]
     raise "Evento inválido" unless evento
     apostador = @@users[emailApostador]
     raise "Apostador inválido" if !apostador || !apostador.is_a?(Apostador)
@@ -33,20 +36,47 @@ module Users
     user if user && (user.password == password)
   end
 
-  def self.get(email)
+  def self.getUser(email)
     user = @@users[email]
     user
   end
 
-  def self.delete(email)
+  def self.deleteUser(email)
     user = @@users.delete(email)
   end
 
-  def self.to_s
+  def self.usersToString
     string = ''
     @@users.each do |key, value|
       string += "#{key} -> #{value}\n"
     end
     string
   end
+
+  ##EVENTOS##
+
+  def self.newEvento(home, away, date, homeodd, drawodd, awayodd, bookiemail)
+    bookie = user = @@users[bookiemail]
+    if !bookie || !bookie.is_a?(Bookie)
+      raise 'Invalid Bookie'
+    else
+      id = @@eventos.length
+      evento = Evento.new(id, home, away, date, homeodd, drawodd, awayodd)
+      bookie.addEvento(evento)
+      @@eventos[id] = evento
+    end
+  end
+
+  def self.getEvento(id)
+    @@eventos[id]
+  end
+
+  def self.eventosToString
+    string = ''
+    @@eventos.each do |key, value|
+      string += "#{key} -> #{value}\n"
+    end
+    string
+  end
+
 end

@@ -42,33 +42,3 @@ class Evento
     "ID=#{@id} | #{@home} VS #{@away} Odds(#{@homeodd}|#{@drawodd}|#{@awayodd})"
   end
 end
-
-module Eventos
-  @@eventos = {}
-
-  def self.add(home, away, date, homeodd, drawodd, awayodd, bookiemail)
-    bookie = Users.get(bookiemail)
-    if !bookie || !bookie.is_a?(Bookie)
-      raise 'Invalid Bookie'
-    else
-      id = @@eventos.length
-      evento = Evento.new(id, home, away, date, homeodd, drawodd, awayodd)
-      bookie.addEvento(evento)
-      @@eventos[id] = evento
-    end
-  end
-
-  def self.get(id)
-    @@eventos[id]
-  end
-
-  def self.to_s
-    string = ''
-    @@eventos.each do |key, value|
-      string += "#{key} -> #{value}\n"
-    end
-    string
-  end
-end
-
-# datas em ruby -> ano mes di
