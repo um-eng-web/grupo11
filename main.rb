@@ -1,52 +1,11 @@
 # isto é tipo uma classe main, o programa começa aqui
 
-require_relative 'evento'
-require_relative 'betess'
-require_relative 'aposta'
+require_relative 'api/betess'
+require_relative 'views/userview'
 
 # ideia: criar uma pasta com uma view para cada modelo
 
-def registerApostador
-  puts 'Enter your email!'
-  email = gets.chomp
-  puts 'Enter your name!'
-  name = gets.chomp
-  puts 'Enter your password!'
-  password = gets.chomp
-  puts 'Enter your starting balance'
-  balance = gets.chomp.to_i
-  if BetESS.registerApostador(email, password, name, balance)
-    puts 'Register successfull!'
-  else
-    puts 'Email in use!'
-  end
-end
 
-def registerBookie
-  puts 'Enter your email!'
-  email = gets.chomp
-  puts 'Enter your name!'
-  name = gets.chomp
-  puts 'Enter your password!'
-  password = gets.chomp
-  if BetESS.registerBookie(email, password, name)
-    puts 'Register Bookie successfull!'
-  else
-    puts 'Email in use!'
-  end
-end
-
-def loginUser
-  puts 'Enter your email!'
-  email = gets.chomp
-  puts 'Enter your password!'
-  password = gets.chomp
-  if BetESS.login(email, password)
-    puts 'Login successfull!'
-  else
-    puts 'Wrong login!'
-  end
-end
 
 # isto é a main
 
@@ -63,13 +22,13 @@ if __FILE__ == $PROGRAM_NAME
     puts "\n"
     case gets.chomp
     when '1'
-      registerApostador
+      UserView.registerApostador
     when '2'
-      loginUser
+      UserView.loginUser
     when '3'
       puts BetESS.usersToString
     when '4'
-      registerBookie
+      UserView.registerBookie
     when '5'
       puts 'Bye!'
       exit
