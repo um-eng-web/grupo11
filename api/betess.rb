@@ -56,6 +56,14 @@ module BetESS
     string
   end
 
+  def self.getApostas
+    apostas = []
+    @@users.each do |key, value|
+      apostas += value.apostas if value.is_a?(Apostador)
+    end
+    apostas
+  end
+
   ##EVENTOS##
 
   def self.newEvento(home, away, date, homeodd, drawodd, awayodd, bookiemail)

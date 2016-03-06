@@ -30,7 +30,7 @@ puts("Testar apostas\n\n")
 #como salvar as excepçoes
 begin
   aposta = BetESS.newAposta(0, 'HOME', 5, 'apostador1@email')
-  aposta1 = BetESS.newAposta(0, 'HOME', 150, 'apostador2@email')
+  aposta1 = BetESS.newAposta(0, 'HOME', 20, 'apostador2@email')
 rescue NotEnoughMoney
   puts "Não tem dinheiro para apostar!"
 end
@@ -44,8 +44,14 @@ puts("\nBalance apostador1=#{apostador1.balance}\n\n")
 
 puts("--------------------------------------")
 
-puts "Eventos em que o Benfica participa \n\n"
+puts "--Eventos em que o Benfica participa--\n\n"
 puts BetESS.getEventos.select { |evento| evento.home=="Benfica" || evento.away=="Benfica"}
 
-puts "\n\nEventos mês de março \n\n"
+puts "\n\n--Eventos mês de março--\n\n"
 puts BetESS.getEventos.select { |evento| evento.date.month == 3}
+
+puts "\n\n--Apostas com valor superior a 10--\n\n"
+puts BetESS.getApostas.select { |aposta| aposta.valor > 10}
+
+puts "\n\n--Apostas do apostador1--\n\n"
+puts BetESS.getApostas.select { |aposta| aposta.apostador.email == "apostador1@email"}
