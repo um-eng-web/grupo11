@@ -74,6 +74,10 @@ module BetESS
     @@eventos[id]
   end
 
+  def self.getEventos()
+    @@eventos.values
+  end
+
   def self.eventosToString
     string = ''
     @@eventos.each do |key, value|

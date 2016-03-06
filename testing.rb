@@ -12,6 +12,8 @@ bookie1 = BetESS.registerBookie('bookie1@email', '1234', 'bookie1')
 # argumentos Evento (home, away, time, homeodd, drawodd, awayodd)
 BetESS.newEvento('Porto', 'Benfica', Time.local(2016, 3, 3, 16, 20), 3, 2, 4, bookie1.email)
 BetESS.newEvento('Vitoria', 'Braga', Time.local(2016, 3, 3, 16, 20), 1, 1, 2, bookie1.email)
+BetESS.newEvento('Sporting', 'Benfica', Time.local(2016, 4, 12, 16, 20), 3, 2, 4, bookie1.email)
+BetESS.newEvento('Vitoria', 'Porto', Time.local(2016, 4, 12, 16, 20), 1, 1, 2, bookie1.email)
 
 puts("Eventos\n\n")
 puts(BetESS.eventosToString)
@@ -23,7 +25,7 @@ puts '------------------------------------------'
 
 puts("Testar apostas\n\n")
 # instanciar uma aposta (evento, resultado, valor, utilizador)
-# 5*3 = 15
+# 5*3 = 15r
 
 #como salvar as excepçoes
 begin
@@ -39,3 +41,11 @@ puts("Balance apostador1=#{apostador1.balance}\n\n")
 BetESS.getEvento(0).setResult('HOME')
 
 puts("\nBalance apostador1=#{apostador1.balance}\n\n")
+
+puts("--------------------------------------")
+
+puts "Eventos em que o Benfica participa \n\n"
+puts BetESS.getEventos.select { |evento| evento.home=="Benfica" || evento.away=="Benfica"}
+
+puts "\n\nEventos mês de março \n\n"
+puts BetESS.getEventos.select { |evento| evento.date.month == 3}

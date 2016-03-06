@@ -39,6 +39,6 @@ class Evento
   end
 
   def to_s
-    "ID=#{@id} | #{@home} VS #{@away} Odds(#{@homeodd}|#{@drawodd}|#{@awayodd})"
+    "ID=#{@id} | #{@home} VS #{@away} Odds(#{@homeodd}|#{@drawodd}|#{@awayodd}) Date #{@date}"
   end
 end
