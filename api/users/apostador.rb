@@ -16,7 +16,7 @@ class Apostador < User
 
   def notify(evento, valor)
     if valor > 0
-      puts "#{name} acabou de ganhar #{valor} créditos no evento #{evento}!"
+      puts "|Apostador| #{name} acabou de ganhar #{valor} créditos no evento #{evento}!"
     else
       puts "O evento #{evento} acabou"
     end
