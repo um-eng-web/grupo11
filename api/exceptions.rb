@@ -12,3 +12,6 @@ end
 
 class EmailInUse < StandardError
 end
+
+class EventoFinished < StandardError
+end

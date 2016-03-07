@@ -28,6 +28,7 @@ module BetESS
     raise InvalidApostador if !apostador || !apostador.is_a?(Apostador)
     aposta = Aposta.new(evento, result, valor, apostador)
     raise NotEnoughMoney if valor > apostador.balance
+    raise EventoFinished if evento.result
     apostador.balance -= valor
     evento.addAposta(aposta)
     apostador.addAposta(aposta)

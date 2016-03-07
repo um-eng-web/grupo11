@@ -9,6 +9,7 @@ class Aposta
     @homeodd = evento.homeodd
     @drawodd = evento.drawodd
     @awayodd = evento.awayodd
+    @premio = 0
   end
 
   def notify(_result)
@@ -24,6 +25,10 @@ class Aposta
   end
 
   def to_s
-    "evento:#{@evento.id} resultado:#{@result} valor:#{@valor}"
+    if @premio > 0
+      "evento:#{@evento.id} resultado:#{@result} valor:#{@valor} premio:#{@premio}"
+    else
+      "evento:#{@evento.id} resultado:#{@result} valor:#{@valor}"
+    end
   end
 end

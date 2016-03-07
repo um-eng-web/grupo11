@@ -34,8 +34,11 @@ class Evento
   end
 
   def addAposta(aposta)
-    raise :finishedEvento if @result
     @apostas.push(aposta)
+  end
+
+  def is_open?
+    return !@result
   end
 
   def to_s

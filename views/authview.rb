@@ -1,6 +1,6 @@
 require_relative '../api/betess'
 
-module UserView
+class AuthView
   def self.registerApostador
     puts 'Enter your email!'
     email = gets.chomp
@@ -10,9 +10,10 @@ module UserView
     password = gets.chomp
     puts 'Enter your starting balance'
     balance = gets.chomp.to_i
-    if BetESS.registerApostador(email, password, name, balance)
+    begin
+      BetESS.registerApostador(email, password, name, balance)
       puts 'Register successfull!'
-    else
+    rescue EmailInUse
       puts 'Email in use!'
     end
   end
@@ -36,11 +37,13 @@ module UserView
     email = gets.chomp
     puts 'Enter your password!'
     password = gets.chomp
-    if BetESS.login(email, password)
+    user = BetESS.login(email, password)
+    if user
       puts 'Login successfull!'
+      usersview = UsersView.new(user)
+      usersview.menu
     else
       puts 'Wrong login!'
     end
   end
-
 end

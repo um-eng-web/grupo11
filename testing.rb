@@ -47,6 +47,9 @@ puts("--------------------------------------")
 puts "--Eventos em que o Benfica participa--\n\n"
 puts BetESS.getEventos.select { |evento| evento.home=="Benfica" || evento.away=="Benfica"}
 
+puts "\n\n--Eventos disponiveis para aposta--\n\n"
+puts BetESS.getEventos.select { |evento| evento.is_open?}
+
 puts "\n\n--Eventos mês de março--\n\n"
 puts BetESS.getEventos.select { |evento| evento.date.month == 3}
 
