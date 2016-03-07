@@ -14,7 +14,7 @@ class Apostador < User
     @apostas.push(aposta)
   end
 
-  def notify(evento, valor)
+  def update(evento, valor)
     if valor > 0
       puts "|Apostador| #{name} acabou de ganhar #{valor} créditos no evento #{evento}!"
     else
