@@ -1,4 +1,5 @@
 require 'set'
+require 'observer'
 require_relative 'aposta'
 
 # Formatting the way the sets print
@@ -9,6 +10,7 @@ class Set
 end
 
 class Evento
+  include Observable
   attr_reader :home, :away, :date, :result, :homeodd, :drawodd, :awayodd, :apostas, :id
 
   def initialize(id, home, away, date, homeodd, drawodd, awayodd)
@@ -25,15 +27,15 @@ class Evento
   def setResult(result)
     if result == 'AWAY' || result == 'HOME' || result == 'DRAW'
       @result = result
-      @apostas.each do |aposta|
-        aposta.notify(result)
-      end
+      changed
+      notify_observers(result)
     else
       raise :invalidResult
     end
   end
 
   def addAposta(aposta)
+    add_observer(aposta)
     @apostas.push(aposta)
   end
 

@@ -12,7 +12,7 @@ class Aposta
     @premio = 0
   end
 
-  def notify(_result)
+  def update(result)
     result = @evento.result
     premio = 0
     if @evento.result == @result
@@ -21,7 +21,8 @@ class Aposta
       premio = @drawodd * @valor if @evento.result == 'DRAW'
     end
     @premio = premio
-    apostador.update(evento, premio)
+    apostador.balance += premio
+    puts "OBSERVER!!!! Apostador:#{apostador.email} ganhou #{premio} créditos"
   end
 
   def to_s
