@@ -1,5 +1,6 @@
 require_relative 'users/apostador'
 require_relative 'users/bookie'
+require_relative 'users/admin'
 require_relative 'evento'
 require_relative 'aposta'
 require_relative 'exceptions'
@@ -7,6 +8,7 @@ require_relative 'exceptions'
 module BetESS
 
   @@users = {}
+  @@users["admin"] = Admin.new('admin','admin','admin')
   @@eventos = {}
 
   def self.registerApostador(email, password, name, balance)

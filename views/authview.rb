@@ -1,5 +1,6 @@
 require_relative '../api/betess'
 require_relative 'bookiesview'
+require_relative 'adminsview'
 
 class AuthView
   def self.registerApostador
@@ -19,20 +20,6 @@ class AuthView
     end
   end
 
-  def self.registerBookie
-    puts 'Enter your email!'
-    email = gets.chomp
-    puts 'Enter your name!'
-    name = gets.chomp
-    puts 'Enter your password!'
-    password = gets.chomp
-    if BetESS.registerBookie(email, password, name)
-      puts 'Register Bookie successfull!'
-    else
-      puts 'Email in use!'
-    end
-  end
-
   def self.loginUser
     puts 'Enter your email!'
     email = gets.chomp
@@ -47,6 +34,8 @@ class AuthView
       elsif user.is_a?(Bookie)
         bookiesview = BookiesView.new(user)
         bookiesview.menu
+      elsif user.is_a?(Admin)
+        AdminsView.menu
       end
     else
       puts 'Wrong login!'

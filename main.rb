@@ -30,9 +30,7 @@ if __FILE__ == $PROGRAM_NAME
     puts 'Welcome to BetESS'
     puts '1-Register'
     puts '2-Login'
-    puts '3-List users (debug)'
-    puts '4-Register bookie (debug)'
-    puts '5-Exit'
+    puts '3-Exit'
     puts "\n"
     case gets.chomp
     when '1'
@@ -40,10 +38,6 @@ if __FILE__ == $PROGRAM_NAME
     when '2'
       AuthView.loginUser
     when '3'
-      puts BetESS.usersToString
-    when '4'
-      AuthView.registerBookie
-    when '5'
       puts 'Bye!'
       exit
     end

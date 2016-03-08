@@ -43,11 +43,11 @@ class BookiesView
     puts 'Data e hora do evento YYYY-MM-dd HH:mm:ss'
     time = Time.parse(gets.chomp)
     puts 'Odd vitória equipa da casa'
-    homeodd = gets.chomp.to_i
+    homeodd = gets.chomp.to_f
     puts 'Odd de empate'
-    drawodd = gets.chomp.to_i
+    drawodd = gets.chomp.to_f
     puts 'Odd vitória equipa visitante'
-    awayodd = gets.chomp.to_i
+    awayodd = gets.chomp.to_f
     BetESS.newEvento(home, away, time, homeodd, drawodd, awayodd, @bookie.email)
     rescue ArgumentError
       puts 'Data inválida'

@@ -37,7 +37,7 @@ class UsersView
     puts 'Resultado (HOME, AWAY ou DRAW)'
     result = gets.chomp
     puts 'Quantia a apostar?'
-    valor = gets.chomp.to_i
+    valor = gets.chomp.to_f
     BetESS.newAposta(id, result, valor, @user.email)
     puts 'Aposta feita com sucesso'
   rescue NotEnoughMoney

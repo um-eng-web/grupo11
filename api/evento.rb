@@ -40,10 +40,14 @@ class Evento
   end
 
   def is_open?
-    return !@result
+    !@result
   end
 
   def to_s
-    "ID=#{@id} | #{@home} VS #{@away} Odds(#{@homeodd}|#{@drawodd}|#{@awayodd}) Date #{@date}"
+    if @result
+      "ID=#{@id} | #{@home} VS #{@away} Odds(#{@homeodd}|#{@drawodd}|#{@awayodd}) | Resultado Final:#{@result} | Date #{@date}"
+    else
+      "ID=#{@id} | #{@home} VS #{@away} Odds(#{@homeodd}|#{@drawodd}|#{@awayodd}) Date #{@date}"
+    end
   end
 end
