@@ -18,11 +18,11 @@ class UsersView
       when '1'
         puts BetESS.getEventos.select(&:is_open?)
       when '2'
-        puts BetESS.getApostas.select { |aposta| aposta.evento.is_open? }
+        puts @user.apostas.select { |aposta| aposta.evento.is_open? }
       when '3'
         puts BetESS.getEventos.select { |evento| !evento.is_open? }
       when '4'
-        puts BetESS.getApostas.select { |aposta| !aposta.evento.is_open? }
+        puts @user.apostas.select { |aposta| !aposta.evento.is_open? }
       when '5'
         novaAposta
       when '6'

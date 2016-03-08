@@ -27,9 +27,9 @@ class Aposta
 
   def to_s
     if @premio > 0
-      "evento:#{@evento.id} resultado:#{@result} valor:#{@valor} premio:#{@premio}"
+      "evento:#{@evento.id} apostador:#{@apostador.email} resultado:#{@result} valor:#{@valor} premio:#{@premio}"
     else
-      "evento:#{@evento.id} resultado:#{@result} valor:#{@valor}"
+      "evento:#{@evento.id} apostador:#{@apostador.email} resultado:#{@result} valor:#{@valor}"
     end
   end
 end

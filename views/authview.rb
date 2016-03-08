@@ -1,4 +1,5 @@
 require_relative '../api/betess'
+require_relative 'bookiesview'
 
 class AuthView
   def self.registerApostador
@@ -40,8 +41,13 @@ class AuthView
     user = BetESS.login(email, password)
     if user
       puts 'Login successfull!'
-      usersview = UsersView.new(user)
-      usersview.menu
+      if user.is_a?(Apostador)
+        usersview = UsersView.new(user)
+        usersview.menu
+      elsif user.is_a?(Bookie)
+        bookiesview = BookiesView.new(user)
+        bookiesview.menu
+      end
     else
       puts 'Wrong login!'
     end
