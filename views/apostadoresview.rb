@@ -1,4 +1,4 @@
-class UsersView
+class ApostadoresView
   def initialize(user)
     @user = user
   end

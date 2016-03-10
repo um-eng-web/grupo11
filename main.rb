@@ -1,7 +1,6 @@
 # isto é tipo uma classe main, o programa começa aqui
 
 require_relative 'api/betess'
-require_relative 'views/usersview'
 require_relative 'views/authview'
 
 # ideia: criar uma pasta com uma view para cada modelo

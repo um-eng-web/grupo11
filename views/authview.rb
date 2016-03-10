@@ -1,6 +1,7 @@
 require_relative '../api/betess'
 require_relative 'bookiesview'
 require_relative 'adminsview'
+require_relative 'apostadoresview'
 
 class AuthView
   def self.registerApostador
@@ -29,7 +30,7 @@ class AuthView
     if user
       puts 'Login successfull!'
       if user.is_a?(Apostador)
-        usersview = UsersView.new(user)
+        usersview = ApostadoresView.new(user)
         usersview.menu
       elsif user.is_a?(Bookie)
         bookiesview = BookiesView.new(user)
