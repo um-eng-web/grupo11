@@ -11,9 +11,9 @@ require_relative 'views/authview'
 if __FILE__ == $PROGRAM_NAME
 
   # email password name balance
-  apostador1 = BetESS.registerApostador('apostador1@email', '1234', 'apostador1', 60)
-  apostador2 = BetESS.registerApostador('apostador2@email', '1234', 'apostador2', 120)
-  apostador3 = BetESS.registerApostador('apostador3@email', '1234', 'apostador3', 40)
+  BetESS.registerApostador('apostador1@email', '1234', 'apostador1', 60)
+  BetESS.registerApostador('apostador2@email', '1234', 'apostador2', 120)
+  BetESS.registerApostador('apostador3@email', '1234', 'apostador3', 40)
   bookie1 = BetESS.registerBookie('bookie1@email', '1234', 'bookie1')
 
   # exemplos do codigo, experimentar no interpretador é possível

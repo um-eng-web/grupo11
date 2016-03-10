@@ -48,7 +48,7 @@ module BetESS
   end
 
   def self.deleteUser(email)
-    user = @@users.delete(email)
+    @@users.delete(email)
   end
 
   def self.usersToString
@@ -70,7 +70,7 @@ module BetESS
   ##EVENTOS##
 
   def self.newEvento(home, away, date, homeodd, drawodd, awayodd, bookiemail)
-    bookie = user = @@users[bookiemail]
+    bookie = @@users[bookiemail]
     if !bookie || !bookie.is_a?(Bookie)
       raise InvalidBookie
     else
