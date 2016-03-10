@@ -8,12 +8,12 @@ require_relative 'exceptions'
 module BetESS
 
   @@users = {}
-  @@users["admin"] = Admin.new('admin','admin','admin')
   @@eventos = {}
+  @@users["admin"] = Admin.new('admin','admin','admin')
 
-  def self.registerApostador(email, password, name, balance)
+  def self.registerApostador(email, password, name, creditos)
     return nil if @@users[email]
-    user = Apostador.new(email, password, name, balance)
+    user = Apostador.new(email, password, name, creditos)
     @@users[email] = user
   end
 
@@ -29,9 +29,8 @@ module BetESS
     apostador = @@users[emailApostador]
     raise InvalidApostador if !apostador || !apostador.is_a?(Apostador)
     aposta = Aposta.new(evento, result, valor, apostador)
-    raise NotEnoughMoney if valor > apostador.balance
     raise EventoFinished if evento.result
-    apostador.balance -= valor
+    apostador.removeCreditos(valor)
     evento.addAposta(aposta)
     apostador.addAposta(aposta)
     aposta

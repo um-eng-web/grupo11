@@ -6,13 +6,15 @@ class UsersView
   def menu
     flag = true
     while flag
-      puts "\nCréditos disponíveis: #{@user.balance} \n"
+      puts "\nCréditos disponíveis: #{@user.creditos} \n"
       puts '1 - Eventos para apostar'
       puts '2 - Apostas por terminar'
       puts "3 - Histórico de eventos"
       puts "4 - Histórico de apostas"
       puts '5 - Efetuar aposta'
-      puts "6 - Voltar atrás"
+      puts '6 - Adicionar créditos'
+      puts '7 - Levantar créditos'
+      puts '8 - Voltar atrás'
       puts "\n\n"
       case gets.chomp
       when '1'
@@ -26,6 +28,10 @@ class UsersView
       when '5'
         novaAposta
       when '6'
+        addCreditos
+      when '7'
+        levantarCreditos
+      when '8'
         flag = false
       end
     end
@@ -44,5 +50,21 @@ class UsersView
     puts 'Não possui fundos suficiente para esta aposta!'
   rescue EventoFinished
     puts 'Este evento já terminou!'
+  end
+
+  def addCreditos
+    puts 'Quantidade de créditos a adicionar?'
+    creditos = gets.chomp.to_f
+    @user.addCreditos(creditos)
+    puts "Créditos adicionados!!"
+  end
+
+  def levantarCreditos
+    puts "Possui #{@user.creditos} créditos. Quanto deseja levantar?"
+    creditos = gets.chomp.to_f
+    @user.removeCreditos(creditos)
+    puts "Créditos removidos!!"
+  rescue NotEnoughMoney
+    puts "Não tem créditos suficientes!"
   end
 end

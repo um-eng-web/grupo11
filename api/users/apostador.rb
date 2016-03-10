@@ -1,12 +1,11 @@
 require_relative 'user'
 
 class Apostador < User
-  attr_reader :apostas
-  attr_accessor :balance
+  attr_reader :apostas, :creditos
 
-  def initialize(email, password, name, balance)
+  def initialize(email, password, name, creditos)
     super(email, password, name)
-    @balance = balance
+    @creditos = creditos
     @apostas = []
   end
 
@@ -14,13 +13,13 @@ class Apostador < User
     @apostas.push(aposta)
   end
 
-  def update(evento, valor)
-    if valor > 0
-      puts "|Apostador| #{name} acabou de ganhar #{valor} créditos no evento #{evento}!"
-    else
-      puts "O evento #{evento} acabou"
-    end
-    @balance += valor
+  def removeCreditos(creditos)
+    raise NotEnoughMoney if creditos > @creditos
+    @creditos -= creditos
+  end
+
+  def addCreditos(creditos)
+    @creditos += creditos
   end
 
   def to_s
@@ -28,6 +27,6 @@ class Apostador < User
       apostas = "\n\t"
       apostas += @apostas.to_a.join("\n\t")
     end
-    "email:#{@email} name:#{@name} balance:#{@balance} apostas:#{apostas}"
+    "email:#{@email} name:#{@name} creditos:#{@creditos} apostas:#{apostas}"
   end
 end

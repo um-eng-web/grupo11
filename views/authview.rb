@@ -10,10 +10,10 @@ class AuthView
     name = gets.chomp
     puts 'Enter your password!'
     password = gets.chomp
-    puts 'Enter your starting balance'
-    balance = gets.chomp.to_i
+    puts 'Enter your starting creditos'
+    creditos = gets.chomp.to_i
     begin
-      BetESS.registerApostador(email, password, name, balance)
+      BetESS.registerApostador(email, password, name, creditos)
       puts 'Register successfull!'
     rescue EmailInUse
       puts 'Email in use!'

@@ -2,7 +2,7 @@ require_relative 'api/evento'
 require_relative 'api/betess'
 require_relative 'api/aposta'
 
-# email password name balance
+# email password name creditos
 apostador1 = BetESS.registerApostador('apostador1@email', '1234', 'apostador1', 60)
 BetESS.registerApostador('apostador2@email', '1234', 'apostador2', 120)
 BetESS.registerApostador('apostador3@email', '1234', 'apostador3', 40)
@@ -35,12 +35,12 @@ rescue NotEnoughMoney
   puts "Não tem dinheiro para apostar!"
 end
 
-puts("Balance apostador1=#{apostador1.balance}\n\n")
+puts("Creditos apostador1=#{apostador1.creditos}\n\n")
 
 # terminar um jogo com um resultado
 BetESS.getEvento(0).setResult('HOME')
 
-puts("\nBalance apostador1=#{apostador1.balance}\n\n")
+puts("\nCreditos apostador1=#{apostador1.creditos}\n\n")
 
 puts("--------------------------------------")
 
