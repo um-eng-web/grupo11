@@ -12,13 +12,13 @@ module BetESS
   @@users["admin"] = Admin.new('admin','admin','admin')
 
   def self.registerApostador(email, password, name, creditos)
-    return nil if @@users[email]
+    raise EmailInUse if @@users[email]
     user = Apostador.new(email, password, name, creditos)
     @@users[email] = user
   end
 
   def self.registerBookie(email, password, name)
-    return nil if @@users[email]
+    raise EmailInUse if @@users[email]
     user = Bookie.new(email, password, name)
     @@users[email] = user
   end
