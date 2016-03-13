@@ -20,7 +20,7 @@ class Aposta
   def update(_result)
     @premio = @odd * @valor if @evento.result == @result
     apostador.addCreditos(@premio)
-    puts "OBSERVER!!!! Apostador:#{apostador.email} ganhou #{@premio} créditos"
+    puts "OBSERVER!!!! Apostador:#{apostador.email} ganhou #{@premio} creditos"
   end
 
   def to_s

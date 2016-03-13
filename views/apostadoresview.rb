@@ -6,15 +6,15 @@ class ApostadoresView
   def menu
     flag = true
     while flag
-      puts "\nCréditos disponíveis: #{@user.creditos} \n"
+      puts "\nCreditos disponiveis: #{@user.creditos} \n"
       puts '1 - Eventos para apostar'
       puts '2 - Apostas por terminar'
-      puts "3 - Histórico de eventos"
-      puts "4 - Histórico de apostas"
+      puts "3 - Historico de eventos"
+      puts "4 - Historico de apostas"
       puts '5 - Efetuar aposta'
-      puts '6 - Adicionar créditos'
-      puts '7 - Levantar créditos'
-      puts '8 - Voltar atrás'
+      puts '6 - Adicionar creditos'
+      puts '7 - Levantar creditos'
+      puts '8 - Voltar atras'
       puts "\n\n"
       case gets.chomp
       when '1'
@@ -47,24 +47,24 @@ class ApostadoresView
     BetESS.newAposta(id, result, valor, @user.email)
     puts 'Aposta feita com sucesso'
   rescue NotEnoughMoney
-    puts 'Não possui fundos suficiente para esta aposta!'
+    puts 'Nao possui fundos suficiente para esta aposta!'
   rescue EventoFinished
-    puts 'Este evento já terminou!'
+    puts 'Este evento ja terminou!'
   end
 
   def addCreditos
-    puts 'Quantidade de créditos a adicionar?'
+    puts 'Quantidade de creditos a adicionar?'
     creditos = gets.chomp.to_f
     @user.addCreditos(creditos)
-    puts "Créditos adicionados!!"
+    puts "Creditos adicionados!!"
   end
 
   def levantarCreditos
-    puts "Possui #{@user.creditos} créditos. Quanto deseja levantar?"
+    puts "Possui #{@user.creditos} creditos. Quanto deseja levantar?"
     creditos = gets.chomp.to_f
     @user.removeCreditos(creditos)
-    puts "Créditos removidos!!"
+    puts "Creditos removidos!!"
   rescue NotEnoughMoney
-    puts "Não tem créditos suficientes!"
+    puts "Nao tem creditos suficientes!"
   end
 end

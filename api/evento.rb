@@ -34,6 +34,16 @@ class Evento
     end
   end
 
+  def changeOdd(homeodd, drawodd ,awayodd)
+    if(self.is_open?)
+      @homeodd = homeodd
+      @drawodd = drawodd
+      @awayodd = awayodd
+    else
+      raise EventoFinished
+    end
+  end
+
   def addAposta(aposta)
     add_observer(aposta)
     @apostas.push(aposta)

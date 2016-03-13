@@ -10,11 +10,12 @@ class BookiesView
     while flag
       puts '1 - Eventos para aposta'
       puts '2 - Apostas por terminar'
-      puts "3 - Histórico de eventos"
-      puts "4 - Histórico de apostas"
+      puts "3 - Historico de eventos"
+      puts "4 - Historico de apostas"
       puts '5 - Criar evento'
       puts '6 - Fechar evento'
-      puts '7 - Voltar atrás'
+      puts '7 - Editar odds de evento'
+      puts '8 - Voltar atras'
       puts "\n\n"
       case gets.chomp
       when '1'
@@ -30,6 +31,8 @@ class BookiesView
       when '6'
         fecharEvento
       when '7'
+        alterarOdds
+      when '8'
         flag = false
       end
     end
@@ -42,15 +45,15 @@ class BookiesView
     away = gets.chomp
     puts 'Data e hora do evento YYYY-MM-dd HH:mm:ss'
     time = Time.parse(gets.chomp)
-    puts 'Odd vitória equipa da casa'
+    puts 'Odd vitoria equipa da casa'
     homeodd = gets.chomp.to_f
     puts 'Odd de empate'
     drawodd = gets.chomp.to_f
-    puts 'Odd vitória equipa visitante'
+    puts 'Odd vitoria equipa visitante'
     awayodd = gets.chomp.to_f
     BetESS.newEvento(home, away, time, homeodd, drawodd, awayodd, @bookie.email)
     rescue ArgumentError
-      puts 'Data inválida'
+      puts 'Data invalida'
   end
 
   def fecharEvento
@@ -61,9 +64,28 @@ class BookiesView
       result = gets.chomp
       evento.setResult(result)
     else
-      puts 'Evento não existe!'
+      puts 'Evento nao existe!'
     end
   rescue EventoFinished
-    puts 'Este evento já terminou!'
+    puts 'Este evento ja terminou!'
   end
+
+  def alterarOdds
+    puts 'ID do evento?'
+    evento = gets.chomp.to_i
+    if BetESS.checkID(evento)
+      puts 'Odd vitoria equipa da casa'
+      homeodd = gets.chomp.to_f
+      puts 'Odd de empate'
+      drawodd = gets.chomp.to_f
+      puts 'Odd vitoria equipa visitante'
+      awayodd = gets.chomp.to_f
+      BetESS.changeOdd(evento, homeodd, drawodd, awayodd)
+    else
+      puts 'Evento nao existe!'
+    end
+  rescue EventoFinished
+    puts 'Este evento ja terminou!'
+  end
+
 end

@@ -80,8 +80,22 @@ module BetESS
     end
   end
 
+  def self.changeOdd(id, homeOdd, drawodd, awayodd)
+    @@eventos[id].changeOdd(homeOdd, drawodd, awayodd)
+    rescue EventoFinished
+      raise EventoFinished
+  end
+
   def self.getEvento(id)
     @@eventos[id]
+  end
+
+  def self.checkID(id)
+    if(@@eventos[id])
+      true
+    else
+      false
+    end
   end
 
   def self.getEventos()

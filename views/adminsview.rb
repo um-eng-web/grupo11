@@ -3,8 +3,8 @@ class AdminsView
     flag = true
     while flag
       puts "\n"
-      puts '1-List users (debug)'
-      puts '2-Register bookie (debug)'
+      puts '1-List users'
+      puts '2-Register bookie'
       puts '3-Exit'
       puts "\n"
       case gets.chomp
@@ -13,8 +13,7 @@ class AdminsView
       when '2'
         self.registerBookie
       when '3'
-        puts 'Bye!'
-        exit
+        flag = false
       end
     end
   end
