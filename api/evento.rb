@@ -25,13 +25,18 @@ class Evento
   end
 
   def setResult(result)
-    if result == 'AWAY' || result == 'HOME' || result == 'DRAW'
-      @result = result
-      changed
-      notify_observers(result)
+    if(self.is_open?)
+      if result == 'AWAY' || result == 'HOME' || result == 'DRAW'
+        @result = result
+        changed
+        notify_observers(result)
+      else
+        raise InvalidResult
+      end
     else
-      raise :invalidResult
+      raise EventoFinished
     end
+
   end
 
   def changeOdd(homeodd, drawodd ,awayodd)

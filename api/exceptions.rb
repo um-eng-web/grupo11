@@ -15,3 +15,6 @@ end
 
 class EventoFinished < StandardError
 end
+
+class InvalidResult < StandardError
+end

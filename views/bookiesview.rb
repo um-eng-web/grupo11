@@ -58,16 +58,18 @@ class BookiesView
 
   def fecharEvento
     puts 'ID do evento?'
-    evento = BetESS.getEvento(gets.chomp.to_i)
-    if evento
+    evento = gets.chomp.to_i
+    if BetESS.checkID(evento)
       puts 'Resultado final? (HOME, DRAW ou AWAY)'
       result = gets.chomp
-      evento.setResult(result)
+      BetESS.setResult(evento, result)
     else
       puts 'Evento nao existe!'
     end
   rescue EventoFinished
     puts 'Este evento ja terminou!'
+  rescue InvalidResult
+    puts 'Resultado invalido'
   end
 
   def alterarOdds
