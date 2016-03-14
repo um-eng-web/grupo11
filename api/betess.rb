@@ -82,16 +82,10 @@ module BetESS
 
   def self.setResult(evento, result)
     @@eventos[evento].setResult(result)
-    rescue EventoFinished
-      raise EventoFinished
-    rescue InvalidResult
-      raise InvalidResult
   end
 
   def self.changeOdd(id, homeOdd, drawodd, awayodd)
     @@eventos[id].changeOdd(homeOdd, drawodd, awayodd)
-    rescue EventoFinished
-      raise EventoFinished
   end
 
   def self.getEvento(id)

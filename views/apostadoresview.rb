@@ -6,15 +6,17 @@ class ApostadoresView
   def menu
     flag = true
     while flag
+      puts "\nTem #{@user.unread_notifs} notificações por ler!" if @user.unread_notifs > 0
       puts "\nCreditos disponiveis: #{@user.creditos} \n"
       puts '1 - Eventos para apostar'
       puts '2 - Apostas por terminar'
-      puts "3 - Historico de eventos"
-      puts "4 - Historico de apostas"
+      puts '3 - Historico de eventos'
+      puts '4 - Historico de apostas'
       puts '5 - Efetuar aposta'
       puts '6 - Adicionar creditos'
       puts '7 - Levantar creditos'
-      puts '8 - Voltar atras'
+      puts '8 - Ler notificações'
+      puts '9 - Voltar atras'
       puts "\n\n"
       case gets.chomp
       when '1'
@@ -32,6 +34,8 @@ class ApostadoresView
       when '7'
         levantarCreditos
       when '8'
+        getNotifs
+      when '9'
         flag = false
       end
     end
@@ -56,15 +60,22 @@ class ApostadoresView
     puts 'Quantidade de creditos a adicionar?'
     creditos = gets.chomp.to_f
     @user.addCreditos(creditos)
-    puts "Creditos adicionados!!"
+    puts 'Creditos adicionados!!'
   end
 
   def levantarCreditos
     puts "Possui #{@user.creditos} creditos. Quanto deseja levantar?"
     creditos = gets.chomp.to_f
     @user.removeCreditos(creditos)
-    puts "Creditos removidos!!"
+    puts 'Creditos removidos!!'
   rescue NotEnoughMoney
-    puts "Nao tem creditos suficientes!"
+    puts 'Nao tem creditos suficientes!'
+  end
+
+  def getNotifs
+    puts "As suas notificações:\n\n"
+    for notif in @user.getNotifs
+      puts notif
+    end
   end
 end

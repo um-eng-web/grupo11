@@ -1,16 +1,28 @@
 require_relative 'user'
 
 class Apostador < User
-  attr_reader :apostas, :creditos
+  attr_reader :apostas, :creditos, :unread_notifs
 
   def initialize(email, password, name, creditos)
     super(email, password, name)
     @creditos = creditos
     @apostas = []
+    @notifs = []
+    @unread_notifs = 0
   end
 
   def addAposta(aposta)
     @apostas.push(aposta)
+  end
+
+  def addNotif(notif)
+    @unread_notifs += 1
+    @notifs.push(notif)
+  end
+
+  def getNotifs()
+    @unread_notifs = 0
+    @notifs
   end
 
   def removeCreditos(creditos)

@@ -65,4 +65,8 @@ class Evento
       "ID=#{@id} | #{@home} VS #{@away} Odds(#{@homeodd}|#{@drawodd}|#{@awayodd}) Date #{@date}"
     end
   end
+
+  def to_s_simple
+    "ID=#{@id} | #{@home} VS #{@away}"
+  end
 end

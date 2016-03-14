@@ -20,14 +20,15 @@ class Aposta
   def update(_result)
     @premio = @odd * @valor if @evento.result == @result
     apostador.addCreditos(@premio)
+    apostador.addNotif("Acabou de ganhar #{@premio} creditos")
     puts "OBSERVER!!!! Apostador:#{apostador.email} ganhou #{@premio} creditos"
   end
 
   def to_s
     if @premio > 0
-      "evento:#{@evento.id} apostador:#{@apostador.email} resultado:#{@result} valor:#{@valor} premio:#{@premio}"
+      "evento:#{@evento.to_s_simple} apostador:#{@apostador.email} resultado:#{@result} valor:#{@valor} premio:#{@premio}"
     else
-      "evento:#{@evento.id} apostador:#{@apostador.email} resultado:#{@result} valor:#{@valor}"
+      "evento:#{@evento.to_s_simple} apostador:#{@apostador.email} resultado:#{@result} valor:#{@valor}"
     end
   end
 end
