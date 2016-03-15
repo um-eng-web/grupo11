@@ -21,11 +21,11 @@ class Aposta
     @premio = @odd * @valor if @evento.result == @result
     if @premio > 0
       apostador.addCreditos(@premio)
-      apostador.addNotif("Acabou de ganhar #{@premio} creditos")
-      puts "OBSERVER!!!! Apostador:#{apostador.email} ganhou #{@premio} creditos"
+      apostador.addNotif("Acabou de ganhar #{@premio} creditos no evento #{@evento.home} vs #{@evento.away}")
+      puts "OBSERVER!!!! Apostador:#{apostador.email} ganhou #{@premio} creditos no evento #{@evento.home} vs #{@evento.away}"
     else
-      apostador.addNotif("Nao ganhou nada na aposta #{@evento.to_s_simple}")
-      puts "OBSERVER!!!! Nao ganhou nada na aposta #{@evento.to_s_simple}"
+      apostador.addNotif("Nao ganhou nada no evento #{@evento.home} vs #{@evento.away}")
+      puts "OBSERVER!!!! Apostador:#{apostador.email} nao ganhou nada no evento #{@evento.home} vs #{@evento.away}"
     end
   end
 
