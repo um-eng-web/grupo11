@@ -4,8 +4,8 @@ require_relative 'api/aposta'
 
 # email password name creditos
 apostador1 = BetESS.registerApostador('apostador1@email', '1234', 'apostador1', 60)
-BetESS.registerApostador('apostador2@email', '1234', 'apostador2', 120)
-BetESS.registerApostador('apostador3@email', '1234', 'apostador3', 40)
+apostador2 = BetESS.registerApostador('apostador2@email', '1234', 'apostador2', 120)
+apostador3 = BetESS.registerApostador('apostador3@email', '1234', 'apostador3', 40)
 bookie1 = BetESS.registerBookie('bookie1@email', '1234', 'bookie1')
 
 # exemplos do codigo, experimentar no interpretador é possível
@@ -31,6 +31,8 @@ puts("Testar apostas\n\n")
 begin
   BetESS.newAposta(0, 'HOME', 5, 'apostador1@email')
   BetESS.newAposta(0, 'HOME', 20, 'apostador2@email')
+  BetESS.newAposta(0, 'DRAW', 20, 'apostador3@email')
+  BetESS.newAposta(0, 'AWAY', 20, 'apostador1@email')
 rescue NotEnoughMoney
   puts "Não tem dinheiro para apostar!"
 end
@@ -39,6 +41,10 @@ puts("Creditos apostador1=#{apostador1.creditos}\n\n")
 
 # terminar um jogo com um resultado
 BetESS.getEvento(0).setResult('HOME')
+
+puts("\nNotificações apostador1" + apostador1.getNotifs.to_s)
+puts("Notificações apostador2" + apostador2.getNotifs.to_s)
+puts("Notificações apostador3" + apostador3.getNotifs.to_s)
 
 puts("\nCreditos apostador1=#{apostador1.creditos}\n\n")
 
