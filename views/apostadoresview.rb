@@ -6,7 +6,7 @@ class ApostadoresView
   def menu
     flag = true
     while flag
-      puts "\nTem #{@user.unread_notifs} notificações por ler!" if @user.unread_notifs > 0
+      puts "\nTem #{@user.unread_notifs} notificacoes por ler!" if @user.unread_notifs > 0
       puts "\nCreditos disponiveis: #{@user.creditos} \n"
       puts '1 - Eventos para apostar'
       puts '2 - Apostas por terminar'
@@ -15,7 +15,7 @@ class ApostadoresView
       puts '5 - Efetuar aposta'
       puts '6 - Adicionar creditos'
       puts '7 - Levantar creditos'
-      puts '8 - Ler notificações'
+      puts '8 - Ler notificacoes'
       puts '9 - Voltar atras'
       puts "\n\n"
       case gets.chomp
@@ -73,7 +73,7 @@ class ApostadoresView
   end
 
   def getNotifs
-    puts "As suas notificações:\n\n"
+    puts "As suas notificacoes:\n\n"
     for notif in @user.getNotifs
       puts notif
     end
