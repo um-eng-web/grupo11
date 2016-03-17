@@ -54,6 +54,8 @@ class ApostadoresView
     puts 'Nao possui fundos suficiente para esta aposta!'
   rescue EventoFinished
     puts 'Este evento ja terminou!'
+  rescue InvalidResult
+    puts 'Resultado invalido!'
   end
 
   def addCreditos
