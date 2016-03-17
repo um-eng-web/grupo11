@@ -50,6 +50,8 @@ class ApostadoresView
     valor = gets.chomp.to_f
     BetESS.newAposta(id, result, valor, @user.email)
     puts 'Aposta feita com sucesso'
+  rescue InvalidValue
+    puts 'Não pode apostar valores negativos!'
   rescue NotEnoughMoney
     puts 'Nao possui fundos suficiente para esta aposta!'
   rescue EventoFinished

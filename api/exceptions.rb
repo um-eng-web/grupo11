@@ -18,3 +18,6 @@ end
 
 class InvalidResult < StandardError
 end
+
+class InvalidValue < StandardError
+end

@@ -24,6 +24,7 @@ module BetESS
   end
 
   def self.newAposta(idEvento, result, valor, emailApostador)
+    raise InvalidValue if valor <= 0
     raise InvalidResult if result != 'AWAY' && result != 'HOME' && result != 'DRAW'
     evento = @@eventos[idEvento]
     raise InvalidEvento unless evento
